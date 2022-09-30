@@ -1,6 +1,6 @@
-package com.danijel.SpringBootThymeleafCRUD.repository;
+package com.danijel.telefonskiImenikSpringboot.repository;
 
-import com.danijel.SpringBootThymeleafCRUD.model.Contact;
+import com.danijel.telefonskiImenikSpringboot.model.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

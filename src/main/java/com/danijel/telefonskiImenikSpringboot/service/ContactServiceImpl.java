@@ -1,7 +1,7 @@
-package com.danijel.SpringBootThymeleafCRUD.service;
+package com.danijel.telefonskiImenikSpringboot.service;
 
-import com.danijel.SpringBootThymeleafCRUD.model.Contact;
-import com.danijel.SpringBootThymeleafCRUD.repository.ContactRepository;
+import com.danijel.telefonskiImenikSpringboot.model.Contact;
+import com.danijel.telefonskiImenikSpringboot.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

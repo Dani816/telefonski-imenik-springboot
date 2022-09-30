@@ -1,6 +1,6 @@
-package com.danijel.SpringBootThymeleafCRUD.service;
+package com.danijel.telefonskiImenikSpringboot.service;
 
-import com.danijel.SpringBootThymeleafCRUD.model.Contact;
+import com.danijel.telefonskiImenikSpringboot.model.Contact;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

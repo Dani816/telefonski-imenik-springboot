@@ -1,4 +1,4 @@
-package com.danijel.SpringBootThymeleafCRUD;
+package com.danijel.telefonskiImenikSpringboot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

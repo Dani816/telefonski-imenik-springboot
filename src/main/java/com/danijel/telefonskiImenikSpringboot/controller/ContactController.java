@@ -1,7 +1,7 @@
-package com.danijel.SpringBootThymeleafCRUD.controller;
+package com.danijel.telefonskiImenikSpringboot.controller;
 
-import com.danijel.SpringBootThymeleafCRUD.model.Contact;
-import com.danijel.SpringBootThymeleafCRUD.service.ContactService;
+import com.danijel.telefonskiImenikSpringboot.model.Contact;
+import com.danijel.telefonskiImenikSpringboot.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ public class ContactController {
         model.addAttribute("contact", contact);
         return "new_contact";
     }
- 
+
     @PostMapping("/saveContact")
     public String saveContact(@ModelAttribute("contact") Contact contact) {
         contactService.saveContact(contact);

@@ -1,4 +1,4 @@
-package com.danijel.SpringBootThymeleafCRUD.model;
+package com.danijel.telefonskiImenikSpringboot.model;
 
 import javax.persistence.*;
 
@@ -9,12 +9,12 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "firstName")
+    @Column(name = "OIB")
+    private String oib;
+    @Column(name = "Ime")
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "Prezime")
     private String lastName;
-    @Column(name = "email")
-    private String email;
 
     public long getId() {
         return id;
@@ -22,6 +22,14 @@ public class Contact {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getOib() {
+        return oib;
+    }
+
+    public void setOib(String oib) {
+        this.oib = oib;
     }
 
     public String getFirstName() {
@@ -38,13 +46,5 @@ public class Contact {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

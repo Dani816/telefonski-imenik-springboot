@@ -18,24 +18,24 @@
         <table border="1" class = "table table-striped table-responsive-md">
             <thead>
             <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=oib&sortDir=' + ${reverseSortDir}}">
+                    OIB</a>
+            </th>
+            <th>
                 <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
-                    Employee First Name</a>
+                    Ime</a>
             </th>
             <th>
                 <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
-                    Employee Last Name</a>
+                    Prezime</a>
             </th>
-            <th>
-                <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
-                    Employee Email</a>
-            </th>
-            <th> Actions </th>
+            <th> Mogućnosti </th>
             </thead>
             <tbody>
                 <tr th:each="contact : ${listContacts}">
+                <td th:text="${contact.oib}"></td>
                 <td th:text="${contact.firstName}"></td>
                 <td th:text="${contact.lastName}"></td>
-                <td th:text="${contact.email}"></td>
                 <td> <a th:href="@{/showFormForUpdate/{id}(id=${contact.id})}" class="btn btn-primary">Ažuriraj</a>
                     <a th:href="@{/deleteContact/{id}(id=${contact.id})}" class="btn btn-danger">Izbriši</a></td>
 
