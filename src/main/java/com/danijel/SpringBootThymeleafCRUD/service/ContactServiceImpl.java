@@ -1,7 +1,7 @@
 package com.danijel.SpringBootThymeleafCRUD.service;
 
-import com.danijel.SpringBootThymeleafCRUD.model.Employee;
-import com.danijel.SpringBootThymeleafCRUD.repository.EmployeeRepository;
+import com.danijel.SpringBootThymeleafCRUD.model.Contact;
+import com.danijel.SpringBootThymeleafCRUD.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,44 +13,44 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class ContactServiceImpl implements ContactService {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private ContactRepository contactRepository;
 
     @Override
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+    public List<Contact> getAllContacts() {
+        return contactRepository.findAll();
     }
 
     @Override
-    public void saveEmployee(Employee employee) {
-        this.employeeRepository.save(employee);
+    public void saveContact(Contact contact) {
+        this.contactRepository.save(contact);
     }
 
     @Override
-    public Employee getEmployeeById(long id) {
-        Optional < Employee > optional = employeeRepository.findById(id);
-        Employee employee = null;
+    public Contact getContactById(long id) {
+        Optional <Contact> optional = contactRepository.findById(id);
+        Contact contact = null;
         if (optional.isPresent()) {
-            employee = optional.get();
+            contact = optional.get();
         } else {
             throw new RuntimeException(" Employee not found for id :: " + id);
         }
-        return employee;
+        return contact;
     }
 
     @Override
-    public void deleteEmployeeById(long id) {
-        this.employeeRepository.deleteById(id);
+    public void deleteContactById(long id) {
+        this.contactRepository.deleteById(id);
     }
 
     @Override
-    public Page<Employee> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+    public Page<Contact> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
                 Sort.by(sortField).descending();
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        return this.employeeRepository.findAll(pageable);
+        return this.contactRepository.findAll(pageable);
     }
 
 }

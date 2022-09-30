@@ -1,7 +1,7 @@
 package com.danijel.SpringBootThymeleafCRUD.controller;
 
-import com.danijel.SpringBootThymeleafCRUD.model.Employee;
-import com.danijel.SpringBootThymeleafCRUD.service.EmployeeService;
+import com.danijel.SpringBootThymeleafCRUD.model.Contact;
+import com.danijel.SpringBootThymeleafCRUD.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -11,44 +11,44 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class EmployeeController {
+public class ContactController {
 
     @Autowired
-    private EmployeeService employeeService;
+    private ContactService contactService;
 
-    // display list of employees
+    // display list of contacts
     @GetMapping("/")
     public String viewHomePage(Model model) {
         return findPaginated(1, "firstName", "asc", model);
     }
 
-    @GetMapping("/showNewEmployeeForm")
-    public String showNewEmployeeForm(Model model) {
-        var employee = new Employee();
-        model.addAttribute("employee", employee);
-        return "new_employee";
+    @GetMapping("/showNewContactForm")
+    public String showNewContactForm(Model model) {
+        var contact = new Contact();
+        model.addAttribute("contact", contact);
+        return "new_contact";
     }
-
-    @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-        employeeService.saveEmployee(employee);
+ 
+    @PostMapping("/saveContact")
+    public String saveContact(@ModelAttribute("contact") Contact contact) {
+        contactService.saveContact(contact);
         return "redirect:/";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable (value = "id") long id, Model model) {
-        // Get employee from service
-        Employee employee = employeeService.getEmployeeById(id);
+        // Get contact from service
+        Contact contact = contactService.getContactById(id);
 
         //set employee as model attribute to pre-populate the form
-        model.addAttribute("employee", employee);
-        return "update_employee";
+        model.addAttribute("contact", contact);
+        return "update_contact";
     }
 
-    @GetMapping("/deleteEmployee/{id}")
-    public String deleteEmployee(@PathVariable(value = "id") long id) {
+    @GetMapping("/deleteContact/{id}")
+    public String deleteContact(@PathVariable(value = "id") long id) {
         //call delete employee method
-        this.employeeService.deleteEmployeeById(id);
+        this.contactService.deleteContactById(id);
         return "redirect:/";
     }
 
@@ -59,13 +59,13 @@ public class EmployeeController {
                                  Model model) {
         int pageSize = 5;
 
-        Page<Employee> page = employeeService.findPaginated(pageNo, pageSize,sortField,sortDir);
-        List<Employee> listEmployees = page.getContent();
+        Page<Contact> page = contactService.findPaginated(pageNo, pageSize,sortField,sortDir);
+        List<Contact> listContacts = page.getContent();
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("listEmployees", listEmployees);
+        model.addAttribute("listContacts", listContacts);
 
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);

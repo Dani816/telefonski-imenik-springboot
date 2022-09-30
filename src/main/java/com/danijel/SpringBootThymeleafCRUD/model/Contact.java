@@ -3,8 +3,8 @@ package com.danijel.SpringBootThymeleafCRUD.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "employes")
-public class Employee {
+@Table(name = "contact")
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

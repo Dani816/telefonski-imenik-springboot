@@ -12,15 +12,15 @@
 </head>
 <body>
   <div class="container">
-    <h1>Employee management system</h1>
+    <h1>Telefonski imenik</h1>
     <hr>
-    <h2>Save employee</h2>
+    <h2>Novi kontakt</h2>
 
-    <form action="#" th:action="@{/saveEmployee}" th:object = "${employee}" method="POST">
+    <form action="#" th:action="@{/saveContact}" th:object = "${contact}" method="POST">
       <input type="text" th:field = "*{firstName}" placeholder="Employee first name" class="form-control mb-4 col-4">
       <input type="text" th:field = "*{lastName}" placeholder="Employee last name" class="form-control mb-4 col-4">
       <input type="text" th:field = "*{email}" placeholder="Employee email" class="form-control mb-4 col-4">
-    <button type = "submit" class="btn btn-info col-2"> Save employee </button>
+    <button type = "submit" class="btn btn-info col-2"> Spremi kontakt </button>
     </form>
   </div>
 </body>
