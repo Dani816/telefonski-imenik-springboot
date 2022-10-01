@@ -21,6 +21,12 @@
                 <a th:href="@{'/page/' + ${currentPage} + '?sortField=oib&sortDir=' + ${reverseSortDir}}">
                     OIB</a>
             </th>
+
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=phone&sortDir=' + ${reverseSortDir}}">
+                    Telefon</a>
+            </th>
+
             <th>
                 <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
                     Ime</a>
@@ -42,6 +48,7 @@
             <tbody>
                 <tr th:each="contact : ${listContacts}">
                 <td th:text="${contact.oib}"></td>
+                <td th:text="${contact.phone}"></td>
                 <td th:text="${contact.firstName}"></td>
                 <td th:text="${contact.lastName}"></td>
                 <td th:text="${contact.address}"></td>

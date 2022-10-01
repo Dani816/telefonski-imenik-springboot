@@ -11,6 +11,8 @@ public class Contact {
     private long id;
     @Column(name = "OIB")
     private String oib;
+    @Column(name = "Telefon")
+    private String phone;
     @Column(name = "Ime")
     private String firstName;
     @Column(name = "Prezime")
@@ -27,6 +29,10 @@ public class Contact {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getPhone() { return phone; }
+
+    public void setPhone(String phone) { this.phone = phone; }
 
     public String getOib() {
         return oib;
