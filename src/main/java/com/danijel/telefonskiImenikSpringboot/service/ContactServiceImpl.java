@@ -35,7 +35,7 @@ public class ContactServiceImpl implements ContactService {
         if (optional.isPresent()) {
             contact = optional.get();
         } else {
-            throw new RuntimeException(" Employee not found for id :: " + id);
+            throw new RuntimeException(" Ne postoji kontakt gdje je id :: " + id);
         }
         return contact;
     }

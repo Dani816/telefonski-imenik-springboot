@@ -15,6 +15,10 @@ public class Contact {
     private String firstName;
     @Column(name = "Prezime")
     private String lastName;
+    @Column(name = "Adresa")
+    private String address;
+    @Column(name = "Grad")
+    private String city;
 
     public long getId() {
         return id;
@@ -47,4 +51,12 @@ public class Contact {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getAddress() { return address; }
+
+    public void setAddress(String address) {this.address = address;}
+
+    public String getCity() { return city; }
+
+    public void setCity(String city) { this.city = city; }
 }

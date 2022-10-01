@@ -29,6 +29,14 @@
                 <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
                     Prezime</a>
             </th>
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=address&sortDir=' + ${reverseSortDir}}">
+                    Adresa</a>
+            </th>
+            <th>
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=city&sortDir=' + ${reverseSortDir}}">
+                    Grad</a>
+            </th>
             <th> Mogućnosti </th>
             </thead>
             <tbody>
@@ -36,6 +44,8 @@
                 <td th:text="${contact.oib}"></td>
                 <td th:text="${contact.firstName}"></td>
                 <td th:text="${contact.lastName}"></td>
+                <td th:text="${contact.address}"></td>
+                <td th:text="${contact.city}"></td>
                 <td> <a th:href="@{/showFormForUpdate/{id}(id=${contact.id})}" class="btn btn-primary">Ažuriraj</a>
                     <a th:href="@{/deleteContact/{id}(id=${contact.id})}" class="btn btn-danger">Izbriši</a></td>
 
