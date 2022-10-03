@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Telefonski imenik</title>
+
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container my-2">
+  <h1>Telefonski imenik</h1>
+  <a th:href = "@{/showNewContactForm}" class="btn btn-primary btn-sm mb-3"> Novi kontakt</a>
+  <a th:href="@{/}" class = "btn btn-success btn-sm mb-3" > Nazad </a>
+
+  <table border="1" class = "table table-striped table-responsive-md">
+    <thead>
+    <th>
+      <a th:href="@{'/page/' + ${currentPage} + '?sortField=oib&sortDir=' + ${reverseSortDir}}">
+        OIB</a>
+    </th>
+
+    <th>
+      <a th:href="@{'/page/' + ${currentPage} + '?sortField=phone&sortDir=' + ${reverseSortDir}}">
+        Telefon</a>
+    </th>
+
+    <th>
+      <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+        Ime</a>
+    </th>
+    <th>
+      <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+        Prezime</a>
+    </th>
+    <th>
+      <a th:href="@{'/page/' + ${currentPage} + '?sortField=address&sortDir=' + ${reverseSortDir}}">
+        Adresa</a>
+    </th>
+    <th>
+      <a th:href="@{'/page/' + ${currentPage} + '?sortField=city&sortDir=' + ${reverseSortDir}}">
+        Grad</a>
+    </th>
+    <th> Mogućnosti </th>
+    </thead>
+    <tbody>
+    <tr th:each="contact : ${listContacts}">
+      <td th:text="${contact.oib}"></td>
+      <td th:text="${contact.phone}"></td>
+      <td th:text="${contact.firstName}"></td>
+      <td th:text="${contact.lastName}"></td>
+      <td th:text="${contact.address}"></td>
+      <td th:text="${contact.city}"></td>
+      <td> <a th:href="@{/showFormForUpdate/{id}(id=${contact.id})}" class="btn btn-primary">Ažuriraj</a>
+        <a th:href="@{/deleteContact/{id}(id=${contact.id})}" class="btn btn-danger">Izbriši</a></td>
+
+    </tr>
+    </tbody>
+  </table>
+
+  <div th:if = "${totalPages > 1}">
+    <div class = "row col-sm-10">
+      <div class = "col-sm-2">
+        Total Rows: [[${totalItems}]]
+      </div>
+      <div class = "col-sm-1">
+     <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+      <a th:if="${currentPage != i}"
+         th:href="@{'/search/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}} + '&keyword=' + ${keyword}}">[[${i}]]</a>
+      <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+     </span>
+      </div>
+      <div class = "col-sm-1">
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}+ '&keyword=' + ${keyword}}">Next</a>
+        <span th:unless="${currentPage < totalPages}">Next</span>
+      </div>
+
+      <div class="col-sm-1">
+        <a th:if="${currentPage < totalPages}"
+           th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}+ '&keyword=' + ${keyword}}">Last</a>
+        <span th:unless="${currentPage < totalPages}">Last</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

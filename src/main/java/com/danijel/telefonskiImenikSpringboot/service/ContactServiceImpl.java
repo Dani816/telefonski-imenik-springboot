@@ -52,5 +52,15 @@ public class ContactServiceImpl implements ContactService {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.contactRepository.findAll(pageable);
     }
+      @Override
+    public Page<Contact> findPaginatedSearchResult(int pageNo, int pageSize, String sortField, String sortDirection, String keyword) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+          return this.contactRepository.findAllByFirstNameContainingOrLastNameContainingOrAddressContainingOrCityContainingOrOibContainingOrPhoneContaining(
+                  keyword, keyword, keyword, keyword, keyword, keyword, pageable);
+    }
+
+
 
 }

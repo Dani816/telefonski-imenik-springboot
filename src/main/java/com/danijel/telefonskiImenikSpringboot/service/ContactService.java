@@ -12,4 +12,5 @@ public interface ContactService {
     void deleteContactById(long id);
 
     Page<Contact> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
+    Page<Contact> findPaginatedSearchResult(int pageNo, int pageSize, String sortField, String sortDirection, String keyword);
 }

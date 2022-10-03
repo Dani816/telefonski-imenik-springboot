@@ -36,7 +36,7 @@ public class ContactController {
     }
 
     @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable (value = "id") long id, Model model) {
+    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
         // Get contact from service
         Contact contact = contactService.getContactById(id);
 
@@ -53,13 +53,13 @@ public class ContactController {
     }
 
     @GetMapping("/page/{pageNo}")
-    public String findPaginated (@PathVariable (value = "pageNo") int pageNo,
-                                 @RequestParam ("sortField") String sortField,
-                                 @RequestParam ("sortDir") String sortDir,
-                                 Model model) {
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                Model model) {
         int pageSize = 5;
 
-        Page<Contact> page = contactService.findPaginated(pageNo, pageSize,sortField,sortDir);
+        Page<Contact> page = contactService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Contact> listContacts = page.getContent();
 
         model.addAttribute("currentPage", pageNo);
@@ -72,5 +72,34 @@ public class ContactController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         return "index";
+    }
+
+    @GetMapping("/search/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                @RequestParam("keyword") String keyword,
+                                Model model) {
+        int pageSize = 5;
+
+        Page<Contact> page = contactService.findPaginatedSearchResult(pageNo, pageSize, sortField, sortDir, keyword);
+        List<Contact> listContacts = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listContacts", listContacts);
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("keyword", keyword);
+
+        return "search_result";
+    }
+
+    @GetMapping("/search")
+    public String getList(@RequestParam(name = "keyword") String keyword, Model model) {
+        return findPaginated(1, "firstName", "asc", keyword, model);
     }
 }
